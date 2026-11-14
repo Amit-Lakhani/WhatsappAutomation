@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: whatsapp-flask-webhook
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app
+    healthCheckPath: /health
+    envVars:
+      - key: VERIFY_TOKEN
+        sync: false
+      - key: META_APP_SECRET
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.12.8
